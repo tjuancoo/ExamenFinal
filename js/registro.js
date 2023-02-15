@@ -65,11 +65,7 @@ iniciar.addEventListener('click', function () {
         .then((userCredential) => {
             const user = userCredential.user;
             alert("Has iniciado sesión correctamente " + user.email)
-
             usuario.innerHTML = `<p class="user">Bienvenido ${user.email} </p>`
-            document.getElementById('form').style.display = 'block';
-            document.getElementById('reg').style.display = 'none';
-
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -86,10 +82,6 @@ google.addEventListener("click", function () {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             const user = result.user;
-            alert("Has iniciado sesión correctamente " + user.email)
-            document.getElementById('form').style.display = 'block';
-            document.getElementById('reg').style.display = 'none';
-
             usuario.innerHTML = `<p class="user">Bienvenido ${user.email} </p>`
         }).catch((error) => {
             const errorCode = error.code;
@@ -102,20 +94,84 @@ google.addEventListener("click", function () {
 let facebook = document.getElementById("btnFace");
 //Inciar sesión con Facebook
 facebook.addEventListener("click", function () {
-  signInWithPopup(auth, providerFacebook)
-    .then((result) => {
-      const user = result.user;
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
+    signInWithPopup(auth, providerFacebook)
+        .then((result) => {
+            const user = result.user;
+            const credential = FacebookAuthProvider.credentialFromResult(result);
+            const accessToken = credential.accessToken;
+            usuario.innerHTML = `<p class="user">Bienvenido ${user.email} </p>`
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = FacebookAuthProvider.credentialFromError(error);
+        });
+})
+
+const github = document.getElementById("btnGit");
+github.addEventListener("click", function(){
+  signInWithPopup(auth, providerGit)
+.then((result) => {
+  const credential = GithubAuthProvider.credentialFromResult(result);
+  const token = credential.accessToken;
+  const user = result.user;
+  usuario.innerHTML = `<p class="user">Bienvenido ${user.reloadUserInfo.screenName} </p>`
+}).catch((error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  const email = error.customData.email;
+  const credential = GithubAuthProvider.credentialFromError(error);
+});
+})
+
+let cerrar = document.getElementById("btnCerrar");
+//Cerrar sesión
+cerrar.addEventListener("click", function () {
+  signOut(auth).then(() => {
+    alert("Has cerrado sesión correctamente")
+    location.reload()
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorCode + ' + ' + errorMessage)
+  });
+})
+
+//Estado de sesión
+onAuthStateChanged(auth, (user) => {
+    if (user != null) {
+      const uid = user.uid;
       document.getElementById('form').style.display = 'block';
       document.getElementById('reg').style.display = 'none';
-      usuario.innerHTML = `<p class="user">Bienvenido ${user.email} </p>`
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = FacebookAuthProvider.credentialFromError(error);
+    } else {  
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('reg').style.display = 'block';
+    }
+  });
+
+const guardar = document.getElementById("btnGuardar");
+const nombre = document.getElementById("nom");
+const apPat = document.getElementById("app");
+const apMat = document.getElementById("apm");
+const pais = document.getElementById("pais");
+let idU = document.getElementById("idU")
+//Guardar datos
+guardar.addEventListener("click", async () => {
+  try{
+    await setDoc(doc(db, "users", idU.value), {
+      id: idU.value,
+      name: nombre.value,
+      app: apPat.value,
+      apm: apMat.value,
+      pais: pais.value
     });
-})
+    alert("Se han guardado sus datos correctamente");
+
+  }
+  catch(error) {
+    alert(error)
+  }
+
+});
 

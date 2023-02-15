@@ -7,7 +7,7 @@
 body{
     display: grid;
     height: 100vh;
-    background: linear-gradient(150deg, black, rgb(90, 89, 89));
+    background: linear-gradient(150deg, rgb(193, 191, 191), rgb(166, 165, 165));
     place-content: center;
 }
 button{
@@ -17,13 +17,14 @@ button{
     border-radius: 5px;
     padding: 10px 30px;
 }
+
 #btnGoogle{
-    background-color: rgb(226, 88, 88);
-    color: white;
+    border: solid 1px;
+    border-color: rgb(223, 63, 63);
 }
 #btnFace{
-    background-color: rgb(118, 118, 239);
-    color: white;
+    border: solid 1px;
+    border-color: rgb(63, 82, 223);
 }
 #btnCerrar{
     background-color: rgb(224, 59, 59);
@@ -38,27 +39,27 @@ button{
     color: white; 
 }
 #btnCerrar:hover{
-    background-color: rgb(148, 27, 27);
+    background-color: rgb(209, 106, 106);
     color: white; 
 }
 #btnGoogle:hover{
-    background-color: rgb(148, 27, 27)  ;
-    color: white; 
+    background-color: rgb(245, 76, 76)  ;
+    color: rgb(0, 0, 0); 
 }
 #btnFace:hover{
-    background-color: rgb(28, 53, 134);
-    color: white; 
+    background-color: rgb(89, 89, 236);
+    color: rgb(0, 0, 0); 
 }
 #btnGuardar:hover{
     background-color: black;
     color: white; 
 }
 #btnGit{
-    background-color: black;
-    color: white; 
+    border: solid 1px;
+    border-color: rgb(0, 0, 0);
 }
 #btnGit:hover{
-    background-color: rgb(71, 70, 70);
+    background-color: rgb(62, 62, 62);
     color: white; 
 }
 input{
@@ -68,9 +69,30 @@ input{
     border-radius: 5px;
     border-color: rgba(73, 73, 73, 0.203);
 }
+select{
+    margin: 5px;
+    width: 220px;
+    border: black 100px;
+    border-radius: 5px;
+    padding: 10px 30px;
+}
 .container{
     background-color: white;
     text-align: center;
     border-radius: 10px;
     padding: 20px;
+}
+.formulario{
+    display: none;
+    text-align: center;
+    
+}
+#form{
+    align-content: center;
+    justify-content: center;
+    grid-column: 1;
+}
+#user{
+    color: rgb(0, 0, 0);
+    text-align: center; 
 }

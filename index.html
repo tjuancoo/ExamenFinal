@@ -9,6 +9,9 @@
     <title>Examen Final</title>
 </head>
 <body>
+    <nav id="user">
+
+    </nav>
 
     <div class="container" id="reg">
         <input id="inEmail" type="email" placeholder="Correo" required><br>
@@ -16,11 +19,29 @@
         <button id="btnCrear" class="crear">Crear cuenta</button><br>
         <button id="btnIniciar" class="iniciar">Iniciar sesión</button><br>
         
-        <button id="btnGoogle" class="iniGoogle">Iniciar sesión con Google</button><br>
-        <button id="btnGit" class="iniGit">Iniciar sesión con GitHub</button><br>
-        <button id="btnFace" class="iniFace">Iniciar sesión con Facebook</button>
+        <button id="btnGoogle" class="iniGoogle"><img src="./img/google.png" alt="Google" width="10"> Google</button><br>
+        <button id="btnGit" class="iniGit"><img src="./img/github.png" alt="GitHub" width="10"> GitHub</button><br>
+        <button id="btnFace" class="iniFace"><img src="./img/facebook.png" alt="Facebook" width="10"> Facebook</button>
     </div>
     
+    <div class="formulario" id="form">
+        <input type="text" name="idUsu" id="idU" placeholder="ID" required><br>
+        <input type="text" name="nombre" id="nom" placeholder="Nombre" required><br>
+        <input type="text" name="apellidoP" id="app" placeholder="Apellido Paterno" required><br>
+        <input type="text" name="apellidoM" id="apm" placeholder="Apellido Materno" required><br>
+        <select name="pais" id="pais">
+            <option value="México">México</option>
+            <option value="Estados Unidos">Estados Unidos</option>
+            <option value="Canadá">Canadá</option>
+            <option value="España">España</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Francia">Francia</option>
+            <option value="Colombia">Colombia</option>
+        </select><br>
+        <button id="btnGuardar" class="guardar">Guardar</button><br>
+        <button id="btnCerrar" class="cerrar">Cerrar sesión</button><br>
+    </div><br>
 
     <script src="./js/phaser.min.js"></script>
     <script src="./js/videojuego.js"></script>
